@@ -9,6 +9,10 @@ Given a sentence and a target word, `simplify_word()` suggests simpler alternati
 - Word frequency
 - Semantic similarity using FastText
 
+## Dependencies
+
+pip install -r requirements.txt
+
 ## Example Usage
 
 ```python
