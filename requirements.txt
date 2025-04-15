@@ -1,0 +1,9 @@
+transformers
+torch
+scikit-learn
+nltk
+tqdm
+scipy
+tensorflow
+boto3
+requests
