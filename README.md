@@ -13,6 +13,11 @@ Given a sentence and a target word, `simplify_word()` suggests simpler alternati
 
 pip install -r requirements.txt
 
+This notebook expects the FastText .vec and word frequency .txt files to be located in your Google Drive at:
+
+/MyDrive/LSBERT/embeddings/crawl-300d-2M.vec  
+/MyDrive/LSBERT/frequency_merge_wiki_child.txt
+
 ## Example Usage
 
 ```python
