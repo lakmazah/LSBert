@@ -28,7 +28,7 @@ def getWordCount(path):
                 word2count[parts[0]] = float(parts[1])
     return word2count
 
-def substitution_generation(source_word, pre_tokens, pre_scores, num_selection=10):
+def substitution_generation(source_word, pre_tokens, num_selection=10):
     cur_tokens = []
     source_stem = ps.stem(source_word)
     for token in pre_tokens:
@@ -76,9 +76,8 @@ def simplify_word(sentence, target_word, tokenizer, model, fasttext_dico, fastte
     mask_index = (input_ids == tokenizer.mask_token_id).nonzero(as_tuple=True)[1].item()
     topk = logits[0, mask_index].topk(num_candidates * 2)
     pre_tokens = tokenizer.convert_ids_to_tokens(topk.indices.cpu().numpy())
-    pre_scores = topk.values.cpu().numpy()
 
-    candidates = substitution_generation(target_word, pre_tokens, pre_scores, num_selection=num_candidates)
+    candidates = substitution_generation(target_word, pre_tokens, num_selection=num_candidates)
     results = []
     for word in candidates:
         freq = word_count.get(word, 0)
