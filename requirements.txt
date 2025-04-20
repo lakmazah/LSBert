@@ -7,3 +7,7 @@ numpy
 nltk
 pandas
 openpyxl
+tensorflow
+boto3
+requests
+sentencepiece
