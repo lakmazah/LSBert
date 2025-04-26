@@ -1,0 +1,9 @@
+transformers
+sentence-transformers
+torch
+scikit-learn
+scipy
+numpy
+nltk
+pandas
+openpyxl
