@@ -54,4 +54,5 @@ unzip crawl-300d-2M.vec.zip
 
 ### Jupyter Notebooks
 Refer to 'ls_interactive.ipynb' for the simplifier model
+
 Refer to 'cefr-classifier.ipynb' for the CEFR classifier
