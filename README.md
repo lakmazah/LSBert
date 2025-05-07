@@ -76,6 +76,8 @@ gamma = 30 # similarity score multiplier
 
 Simplification with choice of CWI function
 ```
+sent = "This is a test sentence."
+
 simplified = simplifier.simplify_full_sentence(
         sentence=sent,
         alpha=alpha,
