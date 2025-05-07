@@ -18,7 +18,6 @@ The system can be used to simplify sentences and evaluate how much simpler (and 
 ### Clone the repo and install dependencies
 ```bash
 git clone https://github.com/lakmazah/LSBert.git
-cd LSBert
 pip install -r requirements.txt
 ```
 ## Download Models and Data
