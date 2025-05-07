@@ -29,7 +29,7 @@ Place the model in `./models/`:
 
 ### BERT Masked Language Model (for candidate generation)
 This system uses [bert-base-uncased](https://huggingface.co/bert-base-uncased) and
-['bert-large-uncased-whole-word-masking'] (https://huggingface.co/google-bert/bert-large-uncased-whole-word-masking)
+['bert-large-uncased-whole-word-masking'](https://huggingface.co/google-bert/bert-large-uncased-whole-word-masking)
 from HuggingFace
 
 ### Sentence Similarity Model
