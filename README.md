@@ -20,7 +20,7 @@ The system can be used to simplify sentences and evaluate how much simpler (and 
 git clone https://github.com/lakmazah/LSBert.git
 cd LSBert
 pip install -r requirements.txt
-
+```
 ## Download Models and Data
 
 ## Logistic-BERT CWI Model
@@ -50,5 +50,8 @@ Place the .vec file in ./embeddings/
 ```bash
 wget https://dl.fbaipublicfiles.com/fasttext/vectors-english/crawl-300d-2M.vec.zip
 unzip crawl-300d-2M.vec.zip
+```
 
-### Use the Jupyter Notebook 'ls_interactive.ipynb' as a guide for running the model
+### Jupyter Notebooks
+Refer to 'ls_interactive.ipynb' for the simplifier model
+Refer to 'cefr-classifier.ipynb' for the CEFR classifier
