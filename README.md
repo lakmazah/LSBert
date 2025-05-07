@@ -42,8 +42,6 @@ Download the DeBERTA model: https://www.kaggle.com/models/vinaxue/cefr-classifie
 ### Word Frequency Files
 The following should be in `./frequencies/`:
 - `freq_dict.json` (combined SUBTLEX_US and wiki frequencies)
-- `wiki_freq.txt` (Wikipedia-based word counts)
-- `simplewiki_freq.csv` (SimpleWiki word counts)
 
 ### FastText Embeddings
 Place the .vec file in ./embeddings/
