@@ -51,6 +51,56 @@ unzip crawl-300d-2M.vec.zip
 ```
 
 ### Jupyter Notebooks
-Refer to 'ls_interactive.ipynb' for the simplifier model
+Refer to 'ls_interactive.ipynb' for the simplifier model. The core is shown below.
+
+Setup
+```
+clf = joblib.load("/content/drive/MyDrive/LSBERT2/models/cwi_logistic_regression.joblib")
+cwi = ComplexWordIdentifier(clf, freq_dict)
+
+simplifier = LSBertSimplifier()
+simplifier.word_freq_dict = freq_dict
+simplifier.fasttext_dico = fasttext_words
+simplifier.fasttext_emb = fasttext_vecs
+
+num_candidates_per_word = 50
+num_sentences = 10
+alpha = 1.0 # lm score multiplier
+beta = 1.0 # frequency score multiplier
+gamma = 30 # similarity score multiplier
+```
+
+Simplification with choice of CWI function
+```
+simplified = simplifier.simplify_full_sentence(
+        sentence=sent,
+        alpha=alpha,
+        beta=beta,
+        gamma=gamma,
+        num_sentences=num_sentences,
+        num_word_cands=num_candidates_per_word,
+        cwi_func=lambda words: frequency_based_cwi(words, freq_dict, threshold=0.3)
+    )
+```
+OR
+```
+simplified = simplifier.simplify_full_sentence(
+        sentence=sent,
+        alpha=alpha,
+        beta=beta,
+        gamma=gamma,
+        num_sentences=num_sentences,
+        num_word_cands=num_candidates_per_word,
+        cwi_func=lambda words: bert_cwi_func(words, cwi, threshold=0.5)
+    )
+```
+Outputting simplifed sentence
+
+```
+final = simplifier.choose_most_similar(sentence, simplified)
+print(final[0])
+
+#final[1] is the simliarity score
+```
 
 Refer to 'cefr-classifier.ipynb' for the CEFR classifier
