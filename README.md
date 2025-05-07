@@ -22,7 +22,7 @@ pip install -r requirements.txt
 ```
 ## Download Models and Data
 
-## Logistic-BERT CWI Model
+### Logistic-BERT CWI Model
 Place the model in `./models/`:
 - `cwi_logistic_regression.joblib`
 
