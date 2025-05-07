@@ -55,7 +55,7 @@ class LSBertSimplifier:
             # default: treat all words as complex
             complex_targets = [{"word": w, "index": i} for i, w in enumerate(words)]
 
-        simplified_versions = [words.copy() for _ in range(top_k)]
+        simplified_versions = [words.copy() for _ in range(num_sentences)]
         print(complex_targets)
         for target in complex_targets:
             target_word = target["word"]
@@ -76,14 +76,14 @@ class LSBertSimplifier:
                 gamma = gamma
             )
 
-            top_candidates = [cand for cand, _ in ranked if cand.lower() != target_word.lower()][:top_k]
+            top_candidates = [cand for cand, _ in ranked if cand.lower() != target_word.lower()][:num_sentences]
 
             for i in range(min(len(top_candidates), num_sentences)):
                 simplified_versions[i][target_index] = top_candidates[i]
 
         return [' '.join(words) for words in simplified_versions]
 
-    def choose_most_similar(input_sentence, candidate_sentences):
+    def choose_most_similar(self, input_sentence, candidate_sentences):
         # Encode input and candidates
         embeddings = self.sbert_model.encode([input_sentence] + candidate_sentences)
         

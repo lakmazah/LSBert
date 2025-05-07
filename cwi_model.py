@@ -1,8 +1,10 @@
 from nltk.tokenize import word_tokenize
 import string
+import torch
+import numpy as np
+from transformers import BertTokenizerFast, BertModel
 
 def manual_cwi(target_words):
-    """Returns a function that flags words in a sentence that match any in the target list."""
     target_words_lower = [t.lower() for t in target_words]
 
     def cwi_func(words):
@@ -14,13 +16,20 @@ def manual_cwi(target_words):
 
     return cwi_func
 
-def frequency_based_cwi(words, frequency_dict, threshold=3e3):
-    """Returns words with frequency below a threshold."""
-    return [
-        {"word": w, "index": i}
-        for i, w in enumerate(words)
-        if frequency_dict.get(w.lower(), 0.0) < threshold
-    ]
+def frequency_based_cwi(words, frequency_dict, threshold=0.5):
+    complex_words = []
+
+    for i, w in enumerate(words):
+        freq = frequency_dict.get(w.lower(), 1)  # Default to 1
+        freq_log = np.log1p(freq)
+        freq_log_normalized = freq_log / 13  # Scale because log(1000000) ~ 13
+        rarity_weight = 1.0 - freq_log_normalized
+        rarity_weight = np.clip(rarity_weight, 0, 1)
+
+        if rarity_weight >= threshold:
+            complex_words.append({"word": w, "index": i})
+
+    return complex_words
 
 def bert_cwi_func(words, cwi, threshold=0.8):
     sentence = ' '.join(words)
@@ -77,7 +86,7 @@ class ComplexWordIdentifier:
 
         for word_idx, word in enumerate(words):
             if word_idx not in word_embeds:
-                continue  # skip if no embedding (rare)
+                continue  # skip if no embedding
             
             if all(char in string.punctuation for char in word):
               continue  # punctuation, don't predict
