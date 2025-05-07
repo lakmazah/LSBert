@@ -55,6 +55,11 @@ Refer to 'ls_interactive.ipynb' for the simplifier model. The core is shown belo
 
 Setup
 ```
+fasttext_words, fasttext_vecs = load_fasttext("/content/drive/MyDrive/LSBERT2/embeddings/crawl-300d-2M.vec")
+
+with open("/content/drive/MyDrive/LSBERT2/frequencies/freq_dict.json", "r") as f:
+    freq_dict = json.load(f)
+
 clf = joblib.load("/content/drive/MyDrive/LSBERT2/models/cwi_logistic_regression.joblib")
 cwi = ComplexWordIdentifier(clf, freq_dict)
 
